@@ -24,11 +24,16 @@ pipeline {
             stage('docker build') {
                 steps {
                     sh 'echo docker build'
+                    dockerImage = docker.build("baronea90/coglab:$BUILD_NUMBER")
                 }
             }
             stage('docker push') {
                 steps {
-                    sh 'echo docker push!'
+                    script {
+                        docker.withRegistry( 'https://registry.hub.docker.com', credentials ) {
+                            dockerImage.push("$BUILD_NUMBER")
+                            dockerImage.push('latest')
+                        }
                     }
                 }
             stage('Deploy App') {
