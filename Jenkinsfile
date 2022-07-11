@@ -16,7 +16,7 @@ pipeline {
             }
             stage('sonarqube') {
             agent {
-                docker { image '<some sonarcli image>' } }
+                docker { image 'sonarsource/sonar-scanner-cli:latest' } }
                 steps {
                     sh 'echo scanning!'
                 }
