@@ -2,7 +2,7 @@ pipeline {
         agent none
             environment {
             ENV_DOCKER = credentials('dockerhub')
-            DOCKERIMAGE = "dummy/dummy"
+            DOCKERIMAGE = "baronea90/coglab"
             EKS_CLUSTER_NAME = "demo-cluster"
         }
         stages {
