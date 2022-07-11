@@ -23,8 +23,10 @@ pipeline {
             }
             stage('docker build') {
                 steps {
-                    sh 'echo docker build'
-                    dockerImage = docker.build("baronea90/coglab:$BUILD_NUMBER")
+                    script{
+                        sh 'echo docker build'
+                        dockerImage = docker.build("baronea90/coglab:$BUILD_NUMBER")
+                    }
                 }
             }
             stage('docker push') {
