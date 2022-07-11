@@ -36,10 +36,13 @@ pipeline {
                         }
                     }
                 }
+            }
             stage('Deploy App') {
                 steps {
-                    sh 'echo deploy to kubernetes'
+                        withKubeConfig(caCertificate: '', clusterName: 'tufail-sre', contextName: '', credentialsId: 'K8S', namespace: '', serverUrl: '') {
+                            sh ('kubectl apply -f' )
+                        }
                 }
+            }
         }
-}
 }
