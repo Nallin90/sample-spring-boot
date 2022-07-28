@@ -25,7 +25,7 @@ pipeline {
                 steps {
                     script{
                         sh 'echo docker build'
-                        dockerImage = docker.build("baronea90/coglab:$BUILD_NUMBER")
+                        dockerImage = docker.build("$DOCKERIMAGE:$BUILD_NUMBER")
                     }
                 }
             }
