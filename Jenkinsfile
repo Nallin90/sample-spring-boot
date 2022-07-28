@@ -23,8 +23,10 @@ pipeline {
             }
             stage('docker build') {
                 steps {
-                    sh 'echo docker build'
-                    dockerImage = docker.build("baronea90/coglab:$BUILD_NUMBER")
+                    script{
+                        sh 'echo docker build'
+                        dockerImage = docker.build("baronea90/coglab:$BUILD_NUMBER")
+                    }
                 }
             }
             stage('docker push') {
@@ -36,10 +38,13 @@ pipeline {
                         }
                     }
                 }
+            }
             stage('Deploy App') {
                 steps {
-                    sh 'echo deploy to kubernetes'
+                        withKubeConfig(caCertificate: '', clusterName: 'tufail-sre', contextName: '', credentialsId: 'K8S', namespace: '', serverUrl: '') {
+                            sh ('kubectl apply -f' )
+                        }
                 }
+            }
         }
-}
 }
