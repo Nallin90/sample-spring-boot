@@ -30,6 +30,7 @@ pipeline {
                 }
             }
             stage('docker push') {
+            agent any
                 steps {
                     script {
                         docker.withRegistry( 'https://registry.hub.docker.com', credentials ) {
@@ -40,6 +41,7 @@ pipeline {
                 }
             }
             stage('Deploy App') {
+            agent any
                 steps {
                         withKubeConfig(caCertificate: '', clusterName: 'tufail-sre', contextName: '', credentialsId: 'K8S', namespace: '', serverUrl: '') {
                             sh ('kubectl apply -f' )
