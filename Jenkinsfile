@@ -12,7 +12,7 @@ pipeline {
                     docker { image 'openjdk:11-jdk' }
                 }
                 steps {
-                    sh 'chmod +x gradlew && ./gradlew build jacocoTestReport'
+                    sh 'chmod +x gradlew && ./gradlew build spring-boot'
                 }
             }
             stage('sonarqube') {
