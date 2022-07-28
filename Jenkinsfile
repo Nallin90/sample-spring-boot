@@ -1,4 +1,5 @@
 pipeline {
+        tools{gradle 'Gradle'}
         agent any
             environment {
             ENV_DOCKER = credentials('Docker')
