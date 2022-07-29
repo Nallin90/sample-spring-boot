@@ -33,7 +33,7 @@ pipeline {
             stage('docker push') {
                 steps {
                     script {
-                        docker.withRegistry( 'https://registry.hub.docker.com', 'Docker' ) {
+                        docker.withRegistry( 'https://registry.hub.docker.com', 'docker' ) {
                             dockerImage.push("$BUILD_NUMBER")
                             dockerImage.push('latest')
                         }
