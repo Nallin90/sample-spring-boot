@@ -2,7 +2,7 @@ pipeline {
         tools{gradle 'gradle'}
         agent any
             environment {
-            ENV_DOCKER = credentials('Docker')
+            ENV_DOCKER = credentials('docker')
             DOCKERIMAGE = "baronea90/coglab"
             EKS_CLUSTER_NAME = "demo-cluster"
         }
